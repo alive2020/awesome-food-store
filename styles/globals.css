@@ -15,7 +15,6 @@ a {
   box-sizing: border-box;
 }
 
-
 .main {
   min-height: 100vh;
   padding: 2rem;
@@ -25,3 +24,5 @@ a {
   justify-content: flex-start;
   align-items: center;
 }
+
+
