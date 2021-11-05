@@ -1,62 +1,61 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Modal, ModalHeader, ModalTitle } from 'react-bootstrap';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Row, Col, Image } from 'react-bootstrap';
 
-const Modal = ({ show, onClose, store }) => {
-
-  const [isPopup, setIsPopup] = useState(false);
-
-  useEffect(() => {
-    setIsPopup(true);
-  }, []);
-
-  const handleClose = (e) => {
-    e.preventDefault();
-    onClose();
-  };
-
-  const modalContent = show ? (
-    <>
-      {/* <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Large Modal
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>...</Modal.Body>  */}
-      <div>
-        <Row>
-          <Image src={store.image} />
-          <div>
-            <h3>{store.name}</h3>
-            <p>{store.description}</p>
-            <span>
-              {store.url ? (
-                <a target='_blank' href={store.url}>
-                  <i class='fas fa-link'></i>
-                  {store.url}
-                </a>
-              ) : (
-                ''
-              )}
-            </span>
-          </div>
-          <div>
-            <a href='#' onClick={handleClose} />
-          </div>
-        </Row>
-      </div>
-    </>
-  ) : null;
-
-  if (isPopup) {
-    return ReactDOM.createPortal(
-      modalContent,
-      document.getElementById('modal-root')
-    );
-  } else {
-    return null;
-  }
+const ModalOwn = ({ onClose, store }) => {
+  if (store === null) return null;
+  return (
+    <div
+      style={{
+        display: 'block',
+        background: '#fff',
+        position: 'relative',
+        height: '90%',
+        width: '70%',
+        borderRadius: 10,
+      }}
+    >
+      <Row>
+        <img
+          alt='image'
+          src={store.image}
+          style={{
+            width: '50%',
+            height: '100%',
+            resize: 'cover',
+            borderTopLeftRadius: 10,
+            borderBottomLeftRadius: 10,
+          }}
+        />
+        <div>
+          <h3>{store.name}</h3>
+          <p>{store.description}</p>
+          {store.url && (
+            <a target='_blank' href={store.url}>
+              <i class='fas fa-link'></i>
+              {store.url}
+            </a>
+          )}
+        </div>
+        <button
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: 12,
+            right: 24,
+            width: 10,
+            height: 10,
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            cursor: 'pointer',
+            fontSize:24
+          }}
+        >
+        x
+        </button>
+      </Row>
+    </div>
+  );
 };
 
-export default Modal;
+export default ModalOwn;

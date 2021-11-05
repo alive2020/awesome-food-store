@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 // import StoreItem from './StoreItem';
 import styles from '../styles/Stores.module.css';
-import Modal from './Modal';
+import ModalOwn from './Modal';
 
 const StoresList = ({ stores }) => {
-  const [showModal, setShowModal] = useState(false);
-
+  const [state, setState] = useState(null);
+  console.log(state);
   return (
     <div className={styles.storeImg}>
       <Container fluid>
@@ -16,19 +16,33 @@ const StoresList = ({ stores }) => {
           {stores.map((store) => (
             <Image
               id={store.id}
-              onClick={(e) => setShowModal(true, e.target.id)}
+              onClick={(e) => setState(store)}
               className='pb-4 rounded'
               src={store.image}
               rounded
+              style={{ cursor: 'pointer' }}
             />
           ))}
-          <Modal
-            store={e.target.id}
-            show={showModal}
-            onClose={() => setShowModal(false)}
-          ></Modal>
         </Row>
       </Container>
+      <div
+        style={{
+          position: 'absolute',
+          zIndex: 999,
+          display: state!=null ? 'flex' : 'none',
+          top: 0,
+          width: '100vw',
+          height: '100vh',
+          background: '#00000060',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <ModalOwn
+          store={state}
+          onClose={() => setState(null)}
+        />
+      </div>
     </div>
   );
 };
