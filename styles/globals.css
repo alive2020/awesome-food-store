@@ -23,3 +23,60 @@ a {
   justify-content: flex-start;
   align-items: center;
 }
+
+.imgsContainer {
+  margin: 3rem;
+  /* margin: 24px -16px 0; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.images {
+  width: 230px;
+  padding: 0;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.modalContainer {
+  display: block;
+  background: #fff;
+  position: relative;
+  height: 90%;
+  width: 70%;
+  border-radius: 10px;
+}
+
+.modalImg {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+  border-top-left-radius: 10px 10px;
+  border-bottom-left-radius: 10px 10px;
+}
+
+.modalText {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  width: 50%;
+  font-size: 0.8rem;
+  line-height: 1.7rem;
+  padding: 2rem;
+}
+
+.modalBtn {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  width: 10px;
+  height: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 24px;
+}
